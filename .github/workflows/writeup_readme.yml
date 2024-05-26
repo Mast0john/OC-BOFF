@@ -59,6 +59,7 @@ jobs:
       #endregion
 
       #region ImageMagick
+      - name: 1
         run: |
           mkdir -p /tools/imagemagick
           wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
