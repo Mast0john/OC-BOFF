@@ -41,6 +41,21 @@ jobs:
           SRC="name=${DQT}memory${DQT} value=${DQT}256MiB${DQT}"
           RPL="name=${DQT}memory${DQT} value=${DQT}2GiB${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
+          SRC="name=${DQT}width${DQT} value=${DQT}16KP${DQT}"
+          RPL="name=${DQT}width${DQT} value=${DQT}128KP${DQT}"
+          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
+          SRC="name=${DQT}height${DQT} value=${DQT}16KP${DQT}"
+          RPL="name=${DQT}height${DQT} value=${DQT}128KP${DQT}"
+          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
+          SRC="name=${DQT}area${DQT} value=${DQT}128MP${DQT}"
+          RPL="name=${DQT}area${DQT} value=${DQT}1.0737GP${DQT}"
+          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
+          SRC="name=${DQT}map${DQT} value=${DQT}512MiB${DQT}"
+          RPL="name=${DQT}map${DQT} value=${DQT}4GiB${DQT}"
+          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
+          SRC="name=${DQT}disk${DQT} value=${DQT}1GiB${DQT}"
+          RPL="name=${DQT}disk${DQT} value=${DQT}8GiB${DQT}"
+          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
           cat /etc/ImageMagick-6/policy.xml
          
           
