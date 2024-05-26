@@ -38,7 +38,7 @@ jobs:
           SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
           RPL="rights=${DQT}read\|write${DQT} pattern=${DQT}PDF${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}memory${DQT} value=${DQT}2GiB${DQT}"
+          SRC="name=${DQT}memory${DQT} value=${DQT}256MiB${DQT}"
           RPL="name=${DQT}memory${DQT} value=${DQT}2GiB${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
           cat /etc/ImageMagick-6/policy.xml
