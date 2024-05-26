@@ -27,42 +27,69 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
       
-      ## INSTALL GHOSTSCRIPT
-      - name: Install ghostscript
-        run: sudo apt install ghostscript
+      # Needed for the installation
+      RUN apt update && apt install -y wget unzip gnupg git pkg-config debhelper dh-exec dpkg-dev g++ chrpath
 
-      ## INSTALL IMAGEMAGICK PDF
-      - name: Install Imagemagick PDF
-        run: sudo apt install imagemagick-pdf
+      # Remove old ImageMagick and GhostScript versions that are installed by default
+      RUN apt purge -y *magick* *ghostscript*
+      RUN apt autopurge -y
 
-      ## CHANGE IMAGEMAGICK SETTINGS
-      - name: Change ImageMagick security policy
-        run: |
-          DQT='"' 
-          SRC="rights=${DQT}none${DQT} pattern=${DQT}PDF${DQT}"
-          RPL="rights=${DQT}read\|write${DQT} pattern=${DQT}PDF${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}memory${DQT} value=${DQT}256MiB${DQT}"
-          RPL="name=${DQT}memory${DQT} value=${DQT}2GiB${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}width${DQT} value=${DQT}16KP${DQT}"
-          RPL="name=${DQT}width${DQT} value=${DQT}128KP${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}height${DQT} value=${DQT}16KP${DQT}"
-          RPL="name=${DQT}height${DQT} value=${DQT}128KP${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}area${DQT} value=${DQT}128MP${DQT}"
-          RPL="name=${DQT}area${DQT} value=${DQT}1.0737GP${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}map${DQT} value=${DQT}512MiB${DQT}"
-          RPL="name=${DQT}map${DQT} value=${DQT}4GiB${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          SRC="name=${DQT}disk${DQT} value=${DQT}1GiB${DQT}"
-          RPL="name=${DQT}disk${DQT} value=${DQT}8GiB${DQT}"
-          sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
-          cat /etc/ImageMagick-6/policy.xml
-         
-          
+      # Tesseract 5x repository
+      RUN wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
+      RUN echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
+
+      # Install packages
+      RUN apt update && apt install -y \
+      # OpenJDK 8 for veraPDF
+      openjdk-8-jdk-headless \
+      # python & pip
+      python3 python3-pip \
+      # python-poppler dependencies
+      poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \
+      # tesseract
+      tesseract-ocr tesseract-ocr-deu \
+      # ImageMagick dependencies
+      # Thanks to: https://askubuntu.com/a/1357582
+      gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \
+      # other dependencies
+      libzbar0 ffmpeg libsm6 libxext6
+      #endregion
+
+      #region GhostScript
+      ARG GHOSTSCRIPT_TAG=1000
+      ARG GHOSTSCRIPT_VERSION=10.0.0
+
+      RUN mkdir -p /tools/ghostscript
+      WORKDIR /tools/ghostscript
+
+      RUN wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+      RUN tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+      WORKDIR ghostscript-$GHOSTSCRIPT_VERSION
+
+      RUN ./configure
+      RUN make
+      RUN make install
+      #endregion
+
+      #region ImageMagick
+      ARG IMAGEMAGICK_VERSION=7.1.1-2
+
+      RUN mkdir -p /tools/imagemagick
+      WORKDIR /tools/imagemagick
+
+      RUN wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
+      RUN tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
+      WORKDIR ImageMagick-$IMAGEMAGICK_VERSION
+
+      RUN ./configure --with-modules --enable-shared
+      RUN make
+      RUN make install
+      RUN make distclean
+      RUN ldconfig
+
+      cat /etc/ImageMagick-6/policy.xml
+      #endregion
+
       ## TEST
       - name: Convert PDF to JPG
         run: convert -density 900 -trim -colorspace sRGB -alpha remove writeup.pdf -quality 90 output-%03d.jpg
