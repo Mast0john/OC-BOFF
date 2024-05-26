@@ -49,11 +49,6 @@ jobs:
 
       #region GhostScript
       - name: 1
-        arg: |
-          GHOSTSCRIPT_TAG=1000
-          GHOSTSCRIPT_VERSION=10.0.0
-
-      - name: 1
         run: mkdir -p /tools/ghostscript
         workdir: /tools/ghostscript
 
