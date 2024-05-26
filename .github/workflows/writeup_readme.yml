@@ -43,20 +43,20 @@ jobs:
 
       # Install packages
       - name: 1
-        run: apt update && apt install -y \
-      # OpenJDK 8 for veraPDF
-      openjdk-8-jdk-headless \
-      # python & pip
-      python3 python3-pip \
-      # python-poppler dependencies
-      poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \
-      # tesseract
-      tesseract-ocr tesseract-ocr-deu \
-      # ImageMagick dependencies
-      # Thanks to: https://askubuntu.com/a/1357582
-      gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \
-      # other dependencies
-      libzbar0 ffmpeg libsm6 libxext6
+        run:  apt update && apt install -y \
+              # OpenJDK 8 for veraPDF
+              openjdk-8-jdk-headless \
+              # python & pip
+              python3 python3-pip \
+              # python-poppler dependencies
+              poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \
+              # tesseract
+              tesseract-ocr tesseract-ocr-deu \
+              # ImageMagick dependencies
+              # Thanks to: https://askubuntu.com/a/1357582
+              gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \
+              # other dependencies
+              libzbar0 ffmpeg libsm6 libxext6
       #endregion
 
       #region GhostScript
