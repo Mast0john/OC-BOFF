@@ -50,13 +50,11 @@ jobs:
       #region GhostScript
       - name: 1
         run: mkdir -p /tools/ghostscript
-        workdir: /tools/ghostscript
 
       - name: 1
         run: |
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
           tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
-        workdir: ghostscript-$GHOSTSCRIPT_VERSION
 
         run: |
           ./configure
@@ -68,12 +66,10 @@ jobs:
         arg: IMAGEMAGICK_VERSION=7.1.1-2
 
         run: mkdir -p /tools/imagemagick
-        workdir: /tools/imagemagick
 
         run: |
           wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
           tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
-        workdir: ImageMagick-$IMAGEMAGICK_VERSION
 
         run: |
           ./configure --with-modules --enable-shared
