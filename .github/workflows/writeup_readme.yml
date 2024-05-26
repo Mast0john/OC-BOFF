@@ -28,18 +28,18 @@ jobs:
           fetch-depth: 0
       
       # Needed for the installation
-      RUN apt update && apt install -y wget unzip gnupg git pkg-config debhelper dh-exec dpkg-dev g++ chrpath
+      run: apt update && apt install -y wget unzip gnupg git pkg-config debhelper dh-exec dpkg-dev g++ chrpath
 
       # Remove old ImageMagick and GhostScript versions that are installed by default
-      RUN apt purge -y *magick* *ghostscript*
-      RUN apt autopurge -y
+      run: apt purge -y *magick* *ghostscript*
+      run: apt autopurge -y
 
       # Tesseract 5x repository
-      RUN wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
-      RUN echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
+      run: wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
+      run: echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
 
       # Install packages
-      RUN apt update && apt install -y \
+      run: apt update && apt install -y \
       # OpenJDK 8 for veraPDF
       openjdk-8-jdk-headless \
       # python & pip
@@ -56,38 +56,38 @@ jobs:
       #endregion
 
       #region GhostScript
-      ARG GHOSTSCRIPT_TAG=1000
-      ARG GHOSTSCRIPT_VERSION=10.0.0
+      arg: GHOSTSCRIPT_TAG=1000
+      arg: GHOSTSCRIPT_VERSION=10.0.0
 
-      RUN mkdir -p /tools/ghostscript
-      WORKDIR /tools/ghostscript
+      run: mkdir -p /tools/ghostscript
+      workdir: /tools/ghostscript
 
-      RUN wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
-      RUN tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
-      WORKDIR ghostscript-$GHOSTSCRIPT_VERSION
+      run: wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+      run: tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+      workdir: ghostscript-$GHOSTSCRIPT_VERSION
 
-      RUN ./configure
-      RUN make
-      RUN make install
+      run: ./configure
+      run: make
+      run: make install
       #endregion
 
       #region ImageMagick
-      ARG IMAGEMAGICK_VERSION=7.1.1-2
+      arg: IMAGEMAGICK_VERSION=7.1.1-2
 
-      RUN mkdir -p /tools/imagemagick
-      WORKDIR /tools/imagemagick
+      run: mkdir -p /tools/imagemagick
+      workdir: /tools/imagemagick
 
-      RUN wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
-      RUN tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
-      WORKDIR ImageMagick-$IMAGEMAGICK_VERSION
+      run: wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
+      run: tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
+      workdir: ImageMagick-$IMAGEMAGICK_VERSION
 
-      RUN ./configure --with-modules --enable-shared
-      RUN make
-      RUN make install
-      RUN make distclean
-      RUN ldconfig
+      run: ./configure --with-modules --enable-shared
+      run: make
+      run: make install
+      run: make distclean
+      run: ldconfig
 
-      cat /etc/ImageMagick-6/policy.xml
+      run: cat /etc/ImageMagick-6/policy.xml
       #endregion
 
       ## TEST
