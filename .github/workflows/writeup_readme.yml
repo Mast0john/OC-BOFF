@@ -62,10 +62,9 @@ jobs:
       - name: 5
         run: | 
           sudo -i
-          sudo mkdir -p /tools/ghostscript
+          mkdir -p /tools/ghostscript
           cd /tools/ghostscript
-          sudo wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${{env.GHOSTSCRIPT_TAG}}/ghostscript-${{env.GHOSTSCRIPT_VERSION}}.tar.gz -O - | tar -xzvf - -C /tools/ghostscript
-          sudo -i
+          wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${{env.GHOSTSCRIPT_TAG}}/ghostscript-${{env.GHOSTSCRIPT_VERSION}}.tar.gz -O - | tar -xzvf - -C /tools/ghostscript
           cd ghostscript-${{env.GHOSTSCRIPT_VERSION}}
           autoconf
           ./configure
