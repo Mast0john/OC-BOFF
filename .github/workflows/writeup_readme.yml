@@ -39,8 +39,8 @@ jobs:
           RPL="rights=${DQT}read\|write${DQT} pattern=${DQT}PDF${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
           identify -list resource
-          -limit area 10MB -limit disk 500MB
-
+          cat /etc/ImageMagick-6/policy.xml
+          
       ## TEST
       - name: Convert PDF to JPG
         run: convert -density 900 -trim -colorspace sRGB -alpha remove writeup.pdf -quality 90 output-%03d.jpg
