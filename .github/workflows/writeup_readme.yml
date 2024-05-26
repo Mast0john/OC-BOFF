@@ -29,26 +29,26 @@ jobs:
       
       # Needed for the installation
       - name: 1
-        run: apt update && apt install -y wget unzip gnupg git pkg-config debhelper dh-exec dpkg-dev g++ chrpath
+        run: sudo apt update && sudo apt install -y wget unzip gnupg git pkg-config debhelper dh-exec dpkg-dev g++ chrpath
 
       # Remove old ImageMagick and GhostScript versions that are installed by default
-      - name: 1
+      - name: 2
         run: |
-          apt purge -y *magick* *ghostscript*
-          apt autopurge -y
+          sudo apt purge -y *magick* *ghostscript*
+          sudo apt autopurge -y
 
       # Tesseract 5x repository
-      - name: 1
+      - name: 3
         run: |
           wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
           echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
 
       # Install packages
-      - name: 1
-        run: apt update && apt install -y \ openjdk-8-jdk-headless \ python3 python3-pip \ poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \ tesseract-ocr tesseract-ocr-deu \ gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \ libzbar0 ffmpeg libsm6 libxext6
+      - name: 4
+        run: sudo apt update && sudo apt install -y \ openjdk-8-jdk-headless \ python3 python3-pip \ poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \ tesseract-ocr tesseract-ocr-deu \ gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \ libzbar0 ffmpeg libsm6 libxext6
 
       #region GhostScript
-      - name: 1
+      - name: 5
         run: | 
           mkdir -p /tools/ghostscript
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
@@ -59,7 +59,7 @@ jobs:
       #endregion
 
       #region ImageMagick
-      - name: 1
+      - name: 6
         run: |
           mkdir -p /tools/imagemagick
           wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
