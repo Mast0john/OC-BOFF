@@ -31,23 +31,23 @@ jobs:
           fetch-depth: 0
       
       # Needed for the installation
-      - name: 1
+      - name: Prerequisites
         run: sudo apt update && sudo apt install -y wget unzip gnupg git pkg-config debhelper dh-exec dpkg-dev g++ chrpath
 
       # Remove old ImageMagick and GhostScript versions that are installed by default
-      - name: 2
+      - name: Remove Old Magick & Ghost
         run: |
           sudo apt purge -y *magick* *ghostscript*
           sudo apt autopurge -y
 
       # Tesseract 5x repository
-      - name: 3
+      - name: Tesseract 5 repos
         run: |
           wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
           echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | sudo tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
 
       # Install packages
-      - name: 4
+      - name: Install packages
         run: |
           sudo apt update && sudo apt install -y \
           openjdk-8-jdk-headless \
@@ -59,7 +59,7 @@ jobs:
       #endregion
 
       #region GhostScript
-      - name: 5
+      - name: Install GhostScript
         run: | 
           sudo -i
           sudo mkdir -p /tools/ghostscript
@@ -73,27 +73,21 @@ jobs:
       #endregion
 
       #region ImageMagick
-      - name: 6
+      - name: Install ImageMagick
         run: |
-          sudo mkdir -p /tools/imagemagick
           sudo -i
+          sudo mkdir -p /tools/imagemagick
           cd /tools/imagemagick
-          wget -O imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/${{env.IMAGEMAGICK_VERSION}}.tar.gz
-          tar -xvf imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz
+          sudo wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/${{env.IMAGEMAGICK_VERSION}}.tar.gz -O - | sudo tar -xzvf - -C /tools/imagemagick
           sudo -i
           cd imagemagick-${{env.IMAGEMAGICK_VERSION}}
-          autoconf
-          ./configure --with-modules --enable-shared
+          sudo ./configure --with-modules --enable-shared
           sudo make
           sudo make install
           sudo make distclean
           ldconfig
           cat /etc/ImageMagick-6/policy.xml
       #endregion
-
-      ## TEST
-      - name: Convert PDF to JPG
-        run: convert -density 900 -trim -colorspace sRGB -alpha remove writeup.pdf -quality 90 output-%03d.jpg
 
       ## CONVERT THE ACTUAL IMAGES
       - name: Convert Writeup to Images
