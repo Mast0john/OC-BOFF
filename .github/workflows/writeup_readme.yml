@@ -14,6 +14,9 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
     env:
       ORPHAN_BRANCH: readme_images
       QUALITY: 85
@@ -23,7 +26,6 @@ jobs:
       with:
         persist-credentials: false
         fetch-depth: 0
-        node-version: 16.x
 
     ## CONVERT THE ACTUAL IMAGES
     - name: Convert Writeup to Images
