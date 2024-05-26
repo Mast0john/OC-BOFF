@@ -33,7 +33,7 @@ jobs:
 
       ## INSTALL IMAGEMAGICK PDF
       - name: Install Imagemagick PDF
-        run: apk add --no-cache imagemagick imagemagick-pdf
+        run: sudo apt install imagemagick-pdf
 
       ## CHANGE IMAGEMAGICK SETTINGS
       - name: Change ImageMagick security policy
