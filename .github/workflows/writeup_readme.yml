@@ -67,7 +67,6 @@ jobs:
           sudo wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${{env.GHOSTSCRIPT_TAG}}/ghostscript-${{env.GHOSTSCRIPT_VERSION}}.tar.gz -O - | sudo tar -xzvf - -C /tools/ghostscript
           sudo -i
           cd ghostscript-${{env.GHOSTSCRIPT_VERSION}}
-          autoconf
           ./configure
           sudo make
           sudo make install
