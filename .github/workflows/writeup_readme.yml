@@ -66,7 +66,8 @@ jobs:
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${{env.GHOSTSCRIPT_TAG}}/ghostscript-${{env.GHOSTSCRIPT_VERSION}}.tar.gz
           sudo tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
           sudo sh -c 'cd ghostscript-${{env.GHOSTSCRIPT_VERSION}}'
-          ./configure --with-modules --enable-shared
+          autoconf
+          ./configure
           sudo make
           sudo make install
       #endregion
@@ -78,7 +79,8 @@ jobs:
           sudo sh -c 'cd /tools/imagemagick'
           wget -O imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/${{env.IMAGEMAGICK_VERSION}}.tar.gz
           sudo tar -xvf imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz
-           sudo sh -c 'cd imagemagick-${{env.IMAGEMAGICK_VERSION}}'
+          sudo sh -c 'cd imagemagick-${{env.IMAGEMAGICK_VERSION}}'
+          autoconf
           ./configure --with-modules --enable-shared
           sudo make
           sudo make install
