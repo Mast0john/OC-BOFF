@@ -20,7 +20,7 @@ jobs:
     env:
       ORPHAN_BRANCH: readme_images
       QUALITY: 85
-      DPI: 250
+      DPI: 900
     steps:
       - uses: actions/checkout@v2
         with:
