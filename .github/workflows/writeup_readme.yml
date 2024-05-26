@@ -39,6 +39,10 @@ jobs:
           RPL="rights=${DQT}read\|write${DQT} pattern=${DQT}PDF${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
 
+      ## TEST
+      - name: Convert PDF to PNG
+        run: convert -density 900 -background white -alpha off writeup.pdf -quality 90 output-%03d.png
+
       ## CONVERT THE ACTUAL IMAGES
       - name: Convert Writeup to Images
         uses: jruipinto/ImageMagick-action@v1
