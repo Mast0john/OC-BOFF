@@ -40,8 +40,8 @@ jobs:
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
 
       ## TEST
-      - name: Convert PDF to PNG
-        run: convert -density 900 -background white -alpha off writeup.pdf -quality 90 output-%03d.png
+      - name: Convert PDF to JPG
+        run: convert -density 900 -trim -colorspace sRGB -alpha remove writeup.pdf -quality 90 output-%03d.jpg
 
       ## CONVERT THE ACTUAL IMAGES
       - name: Convert Writeup to Images
