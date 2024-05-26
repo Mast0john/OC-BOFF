@@ -58,24 +58,24 @@ jobs:
       #region GhostScript
       - name: 5
         run: | 
-          mkdir -p /tools/ghostscript
+          sudo mkdir -p /tools/ghostscript
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
-          tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+          sudo tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
           ./configure
-          make
-          make install
+          sudo make
+          sudo make install
       #endregion
 
       #region ImageMagick
       - name: 6
         run: |
-          mkdir -p /tools/imagemagick
+          sudo mkdir -p /tools/imagemagick
           wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
-          tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
+          sudo tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
           ./configure --with-modules --enable-shared
-          make
-          make install
-          make distclean
+          sudo make
+          sudo make install
+          sudo make distclean
           ldconfig
           cat /etc/ImageMagick-6/policy.xml
       #endregion
