@@ -1,0 +1,18 @@
+
+
+
+
+@font-face {
+    /* Cinema Script */
+
+    font-family: 'CinemaScript';
+    src: url('Cinema Script/Cinema Script.eot');
+    src: url('Cinema Script/Cinema Script.woff2') format('woff2'),
+    url('Cinema Script/Cinema Script.woff') format('woff'),
+    url('Cinema Script/Cinema Script.ttf') format('truetype'),
+    url('Cinema Script/Cinema Script.eot?#iefix') format('embedded-opentype'),
+    url('Cinema Script/Cinema Script.svg#CinemaScript') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

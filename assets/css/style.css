@@ -1,0 +1,1030 @@
+/***** SOMMAIRE FEUILLE DE STYLE ****
+1. Généralités
+2. Formulaire
+    2.a. Généralités
+    2.b. Newsletter
+    2.c. Module réservation
+    2.d. Formulaire de contact
+3. Cards
+    3.a. Généralités
+    3.b. Cards : actualités
+    3.c. Cards : programmation
+4. Fenêtres modales
+    4.a. Généralités
+    4.b. Modals windows : films
+    4.c. Modals windows : products
+    4.d. Modal window : login
+    4.e. Modal window : submit
+    4.f. Modal window : vote
+    4.g. Modal window : submit vote
+5. Sections
+    5.a Header
+    5.b. Navigation
+    5.c. Festival
+    5.d. Actu
+    5.e. Programmation
+    5.f. Movie Vote
+    5.g. Infos pratiques
+    5.h. Footer
+6. Media Queries
+**********************************/
+
+/****** 1. Généralités ******/
+a:hover{
+    color: #db0000;
+}
+
+a:active{
+    color: #db0000;
+}
+
+#dropdown-menu-1{
+    top:-410px !important;
+}
+
+#dropdown-menu-2{
+    top:-150px !important;
+}
+
+#textlogo{
+    font-family: CinemaScript;
+    font-size: 50px;
+    color: #000;
+}
+
+html {
+    height:100%;
+    margin:0;
+    padding:0;
+}
+body {
+    position:relative;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+#titleDiapo1 {
+    font-family: 'CinemaScript';
+}
+
+#titleDiapo3 {
+    font-family: 'CinemaScript';
+}
+
+.titleNews {
+    font-family: 'CinemaScript';
+    font-size:3.2rem;
+    background-color: rgba(245,245,245,1);
+}
+
+h1 {
+    font-family: 'CinemaScript';
+    font-size:8rem;
+}
+
+#news {
+    color: #000;
+}
+
+#back-to-top {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+    color: #000;
+    cursor: pointer;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+
+#back-to-top:hover {
+    color:#db0000;
+}
+
+#back-to-top.show {
+    opacity: 1;
+}
+
+/****** 2.Formulaire ******/
+/**** 2.a. Généralités ****/
+.form-control {
+    background-color: #0001;
+    color:#000;
+}
+
+.form-control:focus {
+    border-radius: 10px;
+    color:#000;
+    background-color: transparent;
+    border:2px solid #f5f5f5;
+    box-shadow:0 0 0 .2rem rgba(245,245,245,0.2)
+}
+
+.form-control::placeholder {
+    color:#000;
+    opacity:0.4;
+}
+
+.btn.btn-primary {
+    border-radius:10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom:15px;
+    color: #db0000;
+    background-color: #fff;
+    border: 1px solid #db0000;
+    width: 100%;
+}
+
+.btn.btn-primary:hover{
+    color: #fff;
+    background-color: #db0000;
+    border: 1px solid #db0000;
+}
+
+.btn.btn-primary:focus {
+    box-shadow: none !important;
+    color: #fff;
+    background-color: #db0000;
+    border: 1px solid #db0000;
+}
+
+.btn.btn-primary:active {
+    color:#f5f5f5 ;
+    background-color: #db0000 !important;
+    border:2px solid #db0000 !important;
+}
+/**** 2.b. Newsletter ****/
+#actu .form-control {
+    border:2px #ffffff solid;
+    background-color: #ffffff;
+}
+
+#actu .btn.btn-primary {
+    width:100%;
+}
+
+#actu .btn.btn-primary:active {
+    background-color: #ffffff !important;
+    border:2px solid #ffffff !important;
+}
+
+#news-boston .form-control {
+    border:2px #ffffff solid;
+    background-color: #ffffff;
+}
+
+#news-boston .btn.btn-primary {
+    width:100%;
+}
+
+#news-boston .btn.btn-primary:active {
+    background-color: #ffffff !important;
+    border:2px solid #ffffff !important;
+}
+
+/**** 2.c. Module réservation ****/
+.modal .form-control {
+    color:#141414;
+}
+
+.modal .form-control::placeholder {
+    color:#545454;
+}
+
+.modal .btn.btn-primary {
+    color:#db0000;
+    background-color: #fff;
+    border: 1px solid #db0000;
+    width:100%;
+}
+/**** 2.d. Formulaire de contact ****/
+#btn-form-contact {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/****** 3. Cards ******/
+/**** 3.a. Généralités ****/
+.card {
+    border-radius:10px;
+    cursor: pointer;
+}
+
+#actu .card:hover, #programmation .card:hover {
+    opacity:0.5;
+}
+
+.card-columns .card {
+    margin-bottom: 1rem;
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding:0px;
+}
+
+.card-hour {
+    background-color: rgba(0,0,0,0.5);
+    color:#ffffff;
+    text-transform: uppercase;
+    position: absolute;
+    top:0;
+    left:18px;
+    padding:15px 10px;
+}
+
+.card-footer {
+    padding:0;
+    background: transparent;
+    border-top:none;
+}
+
+.card-meta {
+    padding:0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size:0.9rem;
+}
+
+.text-movie-danger{
+    color: #db0000;
+}
+
+/**** 3.b. Cards : Actualités ****/
+#actu .card {
+    background-color: #ffffff;
+}
+
+#news-boston .card {
+    background-color: #ffffff;
+}
+
+/**** 3.c. Cards : Programmation ****/
+#programmation .card {
+    margin-bottom: 0.75rem;
+}
+
+/****** 4. Fenêtres modales ******/
+/**** 4.a. Généralités ****/
+.modal-content {
+    border-radius:10px;
+    color:#141414;
+    background-color:#f5f5f5;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 10px;
+    background:#db0000;
+}
+
+.modal-header h4{
+    color:#f5f5f5;
+}
+
+.close {
+    text-shadow: none;
+    opacity: 1;
+}
+
+.modal-body .row {
+    padding:10px;
+}
+
+.modal-body a {
+    color:#db0000;
+    text-decoration:none;
+}
+
+.modal-body p, .modal-body img {
+    padding-bottom:10px;
+}
+
+.modal h5 {
+    letter-spacing: 0.1rem;
+}
+
+.modal .table td, .modal .table th {
+    padding:0.5rem;
+    border-top:none;
+    border-bottom: 1px solid #C6C6C6;
+    font-weight: lighter;
+}
+
+.modal-footer {
+    border-top:none;
+    padding-top: 0;
+}
+
+.btn.btn-secondary {
+    border-radius: 10px;
+    border:0px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background-color:#db0000;
+}
+
+/**** 4.b. Fenêtre modale : films ****/
+.videoWrapper {
+    position:relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal .card {
+    border:none;
+}
+
+.accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:#db0000;
+}
+
+.modal .card-body p {
+    margin-bottom: 0;
+    padding-top:10px;
+}
+
+.modal .card-header {
+    padding:30px 30px;
+    background:transparent;
+}
+
+.blockquote {
+    padding:20px 0 0 0;
+    color:#545454;
+    font-weight: lighter;
+    font-style:italic;
+}
+
+.blockquote p {
+    padding-bottom: 0px !important;
+}
+
+.module-resa {
+    background: white;
+    padding:20px 10px;
+    box-shadow: 0px 0px 5px #C6C6C6;
+}
+
+/**** 4.c. Fenêtre modale : product ****/
+.tab-content img {
+    border-radius: 3px;
+    max-width: 300px;
+    height: auto;
+}
+
+/**** 4.d. Fenêtre modale : login ****/
+.modal-login {
+    max-width: 360px !important;
+    margin-top:130px;
+}
+
+.modal-dialog .modal-content .card-signup .modal-header {
+    padding-top: 0;
+}
+
+.modal-login .modal-header .card-header{
+    width: 100%;
+    background: #fff;;
+}
+
+.modal-login .modal-header .card-header h4{
+    color: #000;
+}
+
+.modal-login .modal-header .close {
+    color: #000;
+    top: -25px;
+    right: 50px;
+    text-shadow: none;
+    position: absolute;
+}
+
+.modal-login .modal-header .close i{
+    color: #000;
+
+}
+
+.modal-login .modal-body {
+    padding-left: 4px !important;
+}
+
+.modal-login .modal-footer {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+.modal-login .modal-header .card-header .social-line {
+    margin-top: 1rem;
+    text-align: center;
+    padding: 0;
+}
+
+.modal-login .modal-header .card-header .social-line .btn {
+    color: #000;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.modal-login .modal-body {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.modal-login .modal-body .form .description {
+    padding-top: 15px;
+    margin-bottom: -10px;
+    color: #999;
+}
+
+/**** 4.e. Fenêtre modale : submit ****/
+.modal-submit {
+    max-width: 360px !important;
+    margin-top:130px;
+}
+
+.modal-dialog .modal-content .card-signup .modal-header {
+    padding-top: 0;
+}
+
+.modal-submit .modal-header .card-header{
+    width: 100%;
+    background: #fff;;
+}
+
+.modal-submit .modal-header .card-header h4{
+    color: #000;
+}
+
+.modal-submit .modal-header .card-header p{
+    color: #999;
+}
+
+.modal-submit .modal-header .close {
+    color: #000;
+    top: -25px;
+    right: 50px;
+    text-shadow: none;
+    position: absolute;
+}
+
+.modal-submit .modal-header .close i{
+    color: #000;
+}
+
+.modal-submit .modal-body {
+    padding-left: 4px !important;
+}
+
+.modal-submit .modal-footer {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+.modal-submit .modal-header .card-header .social-line {
+    margin-top: 1rem;
+    text-align: center;
+    padding: 0;
+}
+
+.modal-submit .modal-header .card-header .social-line .btn {
+    color: #000;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.modal-submit .modal-body {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.modal-submit .modal-body .form .description {
+    padding-top: 15px;
+    margin-bottom: -10px;
+    color: #999;
+}
+
+/**** 4.f. Fenêtre modale : vote ****/
+#module-vote {
+    background: white;
+    padding:20px 10px;
+    box-shadow: 0px 0px 5px #C6C6C6;
+}
+
+/**** 4.f. Fenêtre modale : vote ****/
+.modal-confirm {
+    color: #434e65;
+    width: 525px;
+}
+.modal-confirm .modal-content {
+    padding: 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+.modal-confirm .modal-header {
+    background: #db0000;
+    border-bottom: none;
+    position: relative;
+    text-align: center;
+    margin: -20px -20px 0;
+    border-radius: 5px 5px 0 0;
+    padding: 35px;
+}
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 36px;
+    margin: 10px 0;
+}
+.modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px;
+}
+.modal-confirm .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.5;
+}
+.modal-confirm .close:hover {
+    opacity: 0.8;
+}
+.modal-confirm .icon-box {
+    color: #fff;
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    border-radius: 50%;
+    z-index: 9;
+    border: 5px solid #fff;
+    padding: 15px;
+    text-align: center;
+}
+.modal-confirm .icon-box i {
+    font-size: 64px;
+    margin: -4px 0 0 -4px;
+}
+.modal-confirm.modal-dialog {
+    margin-top: 80px;
+}
+
+.trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+}
+
+/****** 5. Sections ******/
+/**** 5.a. Header ****/
+header {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(255, 255, 255, 0));
+    background-position: top;
+    background-size: cover;
+    padding:75px 0;
+}
+
+header h1, header h2 {
+    color:#db0000;
+}
+
+header h2 {
+    font-family: 'neoneonregular', sans-serif;
+}
+
+#header div:first-child:hover {
+    text-shadow: 1px 1px 1px #db0000, 0 0 0.5em #db0000, 0 0 0.5em #db0000;
+}
+
+/**** 5.b. Navigation ****/
+
+
+/**** 5.c. Festival ****/
+#presentation {
+    background-color: #db0000;
+}
+
+#presentation .row {
+    align-items: flex-start;
+}
+
+#presentation h1, #infos h1{
+    color:rgba(245,245,245,0.4);
+}
+
+#text-presentation, #infos-pratiques {
+    border-left: 1px solid rgba(245,245,245,0.4);
+}
+
+/***** 5.d. Actualités ****/
+#actu h1 {
+    color:#000;
+}
+
+#loadMore {
+    display:flex;
+    justify-content: flex-end;
+    padding-top:20px;
+}
+
+#loadMore a {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding:10px 20px;
+    border-radius: 10px;
+    background-color: #0001;
+    color:#000;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+}
+
+#loadMore a:hover {
+    color:#fff;
+    background-color: #831010;
+}
+
+#loadMore a:active {
+    color:#001;
+    background-color: #000;
+}
+
+/**** 5.e. Programmation ****/
+#programmation {
+    background-color: #181818;
+}
+
+#programmation .row:first-child {
+    padding-bottom: 8px;
+}
+
+#programmation h2 {
+    border-bottom: 1px #a3a3a3 solid;
+    padding-bottom: 5px;
+}
+
+#programmation .row {
+    align-items: flex-start;
+    color: #fff;
+}
+
+.programmation {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.programmation:last-child {
+    padding-bottom: 50px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.nav-pills.nav-pills-danger .nav-item .nav-link.active, .nav-pills.nav-pills-danger .nav-item .nav-link.active:focus, .nav-pills.nav-pills-danger .nav-item .nav-link.active:hover {
+    background-color: #db0000;
+}
+
+/**** 5.f. Movie Vote ****/
+#submit h1 {
+    color:#000;
+}
+
+#loadMoreMovies {
+    display:flex;
+    justify-content: flex-end;
+    padding-top:20px;
+}
+
+#loadMoreMovies a {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding:10px 20px;
+    border-radius: 10px;
+    background-color: #0001;
+    color:#000;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+}
+
+#loadMoreMovies a:hover {
+    color:#fff;
+    background-color: #831010;
+}
+
+#loadMoreMovies a:active {
+    color:#001;
+    background-color: #000;
+}
+
+/**** 5.g. Infos pratiques ****/
+#infos {
+    background-color:#db0000;
+}
+
+.infosp {
+    margin-bottom: 20px;
+}
+
+#map {
+    width:100%;
+    height:500px;
+    margin-bottom: 20px;
+}
+
+
+#infoMap h5, #infoMap p {
+    font-family: 'Dosis', sans-serif;
+    color:black;
+}
+
+/**** 5.h. Footer ****/
+
+
+.reseaux-sociaux {
+    margin-bottom:35px;
+}
+
+.contact {
+    display: flex;
+    justify-content: flex-start;
+    padding:10px 5px 10px 0;
+}
+
+.contact p, .contact address {
+    padding:0 0 5px 20px;
+}
+
+#credit {
+    background-color: rgba(0,0,0,0.4);
+    padding:15px 65px;
+    color:rgba(245,245,245,0.6);
+}
+
+/****** 6. Media Queries ******/
+@media all and (min-width: 767px) and (max-width: 992px) {
+    /* Actualités */
+    #actu form {
+        display:flex;
+        justify-content: space-between;
+        margin-bottom:20px;
+    }
+
+    #actu .form-group {
+        width:66%;
+    }
+
+    #actu form .btn.btn-primary {
+        width:31%;
+    }
+
+    #news-boston form {
+        display:flex;
+        justify-content: space-between;
+        margin-bottom:20px;
+    }
+
+    #news-boston .form-group {
+        width:66%;
+    }
+
+    #news-boston form .btn.btn-primary {
+        width:31%;
+    }
+
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media all and (min-width: 544px) and (max-width: 767px) {
+    /* Navigation */
+    #navbarToggler {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .navbar-dark .navbar-toggler {
+        border:none;
+    }
+
+    button:focus {
+        outline:none;
+    }
+
+    .nav-item {
+        text-align:right;
+    }
+
+    /* Actualités */
+    .card-columns {
+        column-count:1;
+    }
+
+    #actu form {
+        margin-bottom: 20px;
+    }
+
+    #news-boston form {
+        margin-bottom: 20px;
+    }
+
+}
+
+@media all and (min-width:480px) and (max-width: 544px) {
+    h1 {
+        font-size:3.6rem;
+    }
+
+    /* Navigation */
+    .navbar {
+        padding:0px;
+    }
+
+    #navbarToggler {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .navbar-dark .navbar-toggler {
+        border:none;
+    }
+
+    button:focus {
+        outline:none;
+    }
+
+    .nav-item {
+        text-align:right;
+    }
+
+    /* Actualités */
+    .card-columns {
+        column-count:1;
+    }
+
+    #actu form {
+        margin-bottom: 20px;
+    }
+
+    #news-boston form {
+        margin-bottom: 20px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    #back-to-top {
+        position: fixed;
+        bottom: 10px;
+        right: 7px;
+    }
+
+    h1 {
+        font-size:3rem;
+    }
+
+    h2 {
+        font-size:1.7rem;
+    }
+
+    /* Navigation */
+    .navbar {
+        padding:0px;
+    }
+
+    #navbarToggler {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    .navbar-dark .navbar-toggler {
+        border:none;
+    }
+
+    button:focus {
+        outline:none;
+    }
+
+    .nav-item {
+        text-align:right;
+    }
+
+    /* Actualités */
+    .card-columns {
+        column-count:1;
+    }
+
+    #actu form {
+        margin-bottom: 20px;
+    }
+
+    #news-boston form {
+        margin-bottom: 20px;
+    }
+}
+
+/* The work below, CSSBox, is released under the Creative Commons
+   Attribution-ShareAlike 4.0 license and is available on
+   https://github.com/TheLastProject/CSSBox. You are not required to add
+   additional credit to your website, just leave the above text in this file */
+div.cssbox {
+    display: inline-block;
+}
+
+span.cssbox_full {
+    z-index: 999999;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+    transition: opacity 0.5s linear;
+}
+
+span.cssbox_full img {
+    position: fixed;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    max-height: 90%;
+    max-width: 90%;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px black;
+}
+
+a.cssbox_close,
+a.cssbox_prev,
+a.cssbox_next {
+    z-index: 999999;
+    position: fixed;
+    text-decoration: none;
+    visibility: hidden;
+    color: white;
+    font-size: 36px;
+}
+
+a.cssbox_close {
+    top: 1%;
+    right: 1%
+}
+
+a.cssbox_close::after {
+    content: '\00d7';
+}
+
+a.cssbox_prev,
+a.cssbox_next {
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+
+a.cssbox_prev {
+    left: 5%;
+}
+
+a.cssbox_next {
+    right: 5%;
+}
+
+a:target ~ a.cssbox_close,
+a:target ~ a.cssbox_prev,
+a:target ~ a.cssbox_next {
+    visibility: visible;
+}
+
+a:target > img.cssbox_thumb + span.cssbox_full {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: initial;
+}
+/* This is the end of CSSBox */
