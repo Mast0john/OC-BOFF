@@ -49,14 +49,10 @@ jobs:
 
       #region GhostScript
       - name: 1
-        run: mkdir -p /tools/ghostscript
-
-      - name: 1
-        run: |
+        run: | 
+          mkdir -p /tools/ghostscript
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
           tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
-
-        run: |
           ./configure
           make
           make install
@@ -65,13 +61,10 @@ jobs:
       #region ImageMagick
         arg: IMAGEMAGICK_VERSION=7.1.1-2
 
-        run: mkdir -p /tools/imagemagick
-
         run: |
+          mkdir -p /tools/imagemagick
           wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
           tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
-
-        run: |
           ./configure --with-modules --enable-shared
           make
           make install
