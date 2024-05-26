@@ -62,8 +62,10 @@ jobs:
       - name: 5
         run: | 
           sudo mkdir -p /tools/ghostscript
+          cd /tools/ghostscript
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${{env.GHOSTSCRIPT_TAG}}/ghostscript-${{env.GHOSTSCRIPT_VERSION}}.tar.gz
           sudo tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+          cd ghostscript-${{env.GHOSTSCRIPT_VERSION}}
           ./configure
           sudo make
           sudo make install
@@ -73,8 +75,10 @@ jobs:
       - name: 6
         run: |
           sudo mkdir -p /tools/imagemagick
+          cd /tools/imagemagick
           wget -O imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/${{env.IMAGEMAGICK_VERSION}}.tar.gz
           sudo tar -xvf imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz
+          cd imagemagick-${{env.IMAGEMAGICK_VERSION}}
           ./configure --with-modules --enable-shared
           sudo make
           sudo make install
