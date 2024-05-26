@@ -63,7 +63,7 @@ jobs:
         run: | 
           sudo mkdir -p /tools/ghostscript
           sudo -i
-          cd /tools/ghostscript
+          ./tools/ghostscript
           wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${{env.GHOSTSCRIPT_TAG}}/ghostscript-${{env.GHOSTSCRIPT_VERSION}}.tar.gz
           chmod +rwx ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
           gzip -d ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
