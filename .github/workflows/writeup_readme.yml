@@ -33,35 +33,40 @@ jobs:
 
       # Remove old ImageMagick and GhostScript versions that are installed by default
       - name: 1
-        run: apt purge -y *magick* *ghostscript*
-        run: apt autopurge -y
+        run: |
+          apt purge -y *magick* *ghostscript*
+          apt autopurge -y
 
       # Tesseract 5x repository
       - name: 1
-        run: wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
-        run: echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
+        run: |
+          wget -O- "https://notesalexp.org/debian/alexp_key.asc" | gpg --dearmor -o /usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/tesseract-ocr-5x-archive-keyring.gpg] https://notesalexp.org/tesseract-ocr5/jammy/ jammy main" | tee /etc/apt/sources.list.d/tesseract-ocr-5x.list
 
       # Install packages
       - name: 1
-        run:  apt update && apt install -y \ openjdk-8-jdk-headless \ python3 python3-pip \ poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \ tesseract-ocr tesseract-ocr-deu \ gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \ libzbar0 ffmpeg libsm6 libxext6
+        run: apt update && apt install -y \ openjdk-8-jdk-headless \ python3 python3-pip \ poppler-utils libpoppler-cpp-dev libpoppler-dev cmake python3-pkgconfig \ tesseract-ocr tesseract-ocr-deu \ gsfonts libbz2-dev libdjvulibre-dev libexif-dev libfftw3-dev libfontconfig1-dev libfreetype6-dev libheif-dev libjpeg-dev liblcms2-dev liblqr-1-0-dev libltdl-dev liblzma-dev libopenexr-dev libopenjp2-7-dev libpango1.0-dev libperl-dev libpng-dev librsvg2-dev librsvg2-bin libtiff-dev libwebp-dev libwmf-dev libx11-dev libxext-dev libxml2-dev libxt-dev zlib1g-dev doxygen doxygen-latex graphviz jdupes libxml2-utils xsltproc \ libzbar0 ffmpeg libsm6 libxext6
 
       #region GhostScript
       - name: 1
-        arg: GHOSTSCRIPT_TAG=1000
-        arg: GHOSTSCRIPT_VERSION=10.0.0
+        arg: |
+          GHOSTSCRIPT_TAG=1000
+          GHOSTSCRIPT_VERSION=10.0.0
 
       - name: 1
         run: mkdir -p /tools/ghostscript
         workdir: /tools/ghostscript
 
       - name: 1
-        run: wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
-        run: tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+        run: |
+          wget https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs$GHOSTSCRIPT_TAG/ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
+          tar -xvf ghostscript-$GHOSTSCRIPT_VERSION.tar.gz
         workdir: ghostscript-$GHOSTSCRIPT_VERSION
 
-        run: ./configure
-        run: make
-        run: make install
+        run: |
+          ./configure
+          make
+          make install
       #endregion
 
       #region ImageMagick
@@ -70,17 +75,18 @@ jobs:
         run: mkdir -p /tools/imagemagick
         workdir: /tools/imagemagick
 
-        run: wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
-        run: tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
+        run: |
+          wget -O imagemagick-$IMAGEMAGICK_VERSION.tar.gz https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz
+          tar -xvf imagemagick-$IMAGEMAGICK_VERSION.tar.gz
         workdir: ImageMagick-$IMAGEMAGICK_VERSION
 
-        run: ./configure --with-modules --enable-shared
-        run: make
-        run: make install
-        run: make distclean
-        run: ldconfig
-
-        run: cat /etc/ImageMagick-6/policy.xml
+        run: |
+          ./configure --with-modules --enable-shared
+          make
+          make install
+          make distclean
+          ldconfig
+          cat /etc/ImageMagick-6/policy.xml
       #endregion
 
       ## TEST
