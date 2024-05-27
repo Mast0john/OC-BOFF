@@ -24,6 +24,7 @@ jobs:
       GHOSTSCRIPT_TAG: 1000
       GHOSTSCRIPT_VERSION: 10.0.0
       IMAGEMAGICK_VERSION: 7.1.1-2
+      GITHUB_TOKEN: IMAGEMAGICK
     steps:
       - uses: actions/checkout@v2
         with:
