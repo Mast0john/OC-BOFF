@@ -116,6 +116,9 @@ jobs:
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
           cat /etc/ImageMagick-6/policy.xml
 
+      ## TEST
+      - name: Convert PDF to JPG
+        run: convert -density 900 -trim -colorspace sRGB -alpha remove writeup.pdf -quality 90 output-%03d.jpg
 
       ## CONVERT THE ACTUAL IMAGES
       - name: Convert Writeup to Images
