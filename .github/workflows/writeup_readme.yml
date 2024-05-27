@@ -78,9 +78,9 @@ jobs:
           sudo -i
           sudo mkdir -p /tools/imagemagick
           cd /tools/imagemagick
-          sudo wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/imagemagick-${{env.IMAGEMAGICK_VERSION}}.tar.gz -O - | sudo tar -xzvf - -C /tools/imagemagick
+          sudo wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/${{env.IMAGEMAGICK_VERSION}}.tar.gz -O - | sudo tar -xzvf - -C /tools/imagemagick
           sudo -i
-          cd imagemagick-${{env.IMAGEMAGICK_VERSION}}
+          cd imageMagick-${{env.IMAGEMAGICK_VERSION}}
           sudo ./configure --with-modules --enable-shared
           sudo make
           sudo make install
