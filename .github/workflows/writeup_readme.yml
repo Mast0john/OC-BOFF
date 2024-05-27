@@ -117,7 +117,7 @@ jobs:
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
           cat /etc/ImageMagick-6/policy.xml
 
-      ## CONVERT THE ACTUAL IMAGES
+      ## CONVERT ACTUAL IMAGES
       - name: Convert Writeup to Images
         run: convert -density ${{env.DPI}} -trim -colorspace sRGB -alpha remove writeup.pdf -quality ${{env.QUALITY}} output-%03d.jpg
 
